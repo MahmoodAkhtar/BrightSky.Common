@@ -2,6 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Mahmood Akhtar</Authors>
+    <Company>BrightSkyIT Ltd</Company>
+    <PackageTags />
   </PropertyGroup>
 
 </Project>
