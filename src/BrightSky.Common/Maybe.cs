@@ -21,8 +21,11 @@ namespace BrightSky.Common
         {
             get
             {
-                if (HasNoValue)
-                    throw new InvalidOperationException();
+                var that = this;
+
+                Invariant.ViolatedBy(
+                    () => that.HasNoValue,
+                    $"There is no {nameof(Value)}.");
 
                 return _value;
             }

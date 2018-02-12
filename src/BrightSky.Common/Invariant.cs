@@ -9,5 +9,11 @@ namespace BrightSky.Common
             if (!predicate())
                 throw new InvalidOperationException(message);
         }
+
+        public static void ViolatedBy(Func<bool> predicate, string message)
+        {
+            if (predicate())
+                throw new InvalidOperationException(message);
+        }
     }
 }

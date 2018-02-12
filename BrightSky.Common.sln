@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrightSky.Common", "src\BrightSky.Common\BrightSky.Common.csproj", "{B97F0B85-BFC0-4565-A7AD-F3DEA71E1D61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrightSky.Common", "src\BrightSky.Common\BrightSky.Common.csproj", "{B97F0B85-BFC0-4565-A7AD-F3DEA71E1D61}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrightSky.Common.Tests", "tests\BrightSky.Common.Tests\BrightSky.Common.Tests.csproj", "{6982C45E-74DD-4225-8ECB-1B14A436B07C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EF2FA7A1-02A3-4CB3-B380-9F74FDCD05D3}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
