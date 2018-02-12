@@ -1838,5 +1838,587 @@ namespace BrightSky.Common.Tests
                 Assert.Fail($"Expected no exception, but actually got: {ex}.");
             }
         }
+
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_int_when_given_an_argument_greater_than_value_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            var argument = 1;
+            var value = 0;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_int_when_given_an_argument_less_than_value_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            var argument = 0;
+            var value = 1;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_int_when_given_an_argument_equal_to_value_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            var argument = 1;
+            var value = 1;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_int_when_given_an_argument_greater_than_value_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            var argument = 1;
+            var value = 0;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_int_when_given_an_argument_less_than_value_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            var argument = 0;
+            var value = 1;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_int_when_given_an_argument_equal_to_value_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            var argument = 1;
+            var value = 1;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_int_when_given_an_argument_greater_than_value_and_a_name_then_throw_an_ArgumentOutOfRangeException()
+        {
+            // arrange
+            var argument = 1;
+            var value = 0;
+            var name = nameof(argument);
+
+            // act + assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_int_when_given_an_argument_less_than_value_and_a_name_then_dont_throw_an_Exception()
+        {
+            try
+            {
+                // arrange
+                var argument = 0;
+                var value = 1;
+                var name = nameof(argument);
+
+                // act
+                GuardAgainst.GreaterThanOrEqualTo(argument, value, name);
+            }
+            catch (Exception ex)
+            {
+                // assert fail
+                Assert.Fail($"Expected no exception, but actually got: {ex}.");
+            }
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_int_when_given_an_argument_equal_to_value_and_a_name_then_throw_an_ArgumentOutOfRangeException()
+        {
+            // arrange
+            var argument = 1;
+            var value = 1;
+            var name = nameof(argument);
+
+            // act + assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_long_when_given_an_argument_greater_than_value_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            long argument = 1;
+            long value = 0;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_long_when_given_an_argument_less_than_value_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            long argument = 0;
+            long value = 1;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_long_when_given_an_argument_equal_to_value_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            long argument = 1;
+            long value = 1;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_long_when_given_an_argument_greater_than_value_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            long argument = 1;
+            long value = 0;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_long_when_given_an_argument_less_than_value_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            long argument = 0;
+            long value = 1;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_long_when_given_an_argument_equal_to_value_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            long argument = 1;
+            long value = 1;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_long_when_given_an_argument_greater_than_value_and_a_name_then_throw_an_ArgumentOutOfRangeException()
+        {
+            // arrange
+            long argument = 1;
+            long value = 0;
+            var name = nameof(argument);
+
+            // act + assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_long_when_given_an_argument_less_than_value_and_a_name_then_dont_throw_an_Exception()
+        {
+            try
+            {
+                // arrange
+                long argument = 0;
+                long value = 1;
+                var name = nameof(argument);
+
+                // act
+                GuardAgainst.GreaterThanOrEqualTo(argument, value, name);
+            }
+            catch (Exception ex)
+            {
+                // assert fail
+                Assert.Fail($"Expected no exception, but actually got: {ex}.");
+            }
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_long_when_given_an_argument_equal_to_value_and_a_name_then_throw_an_ArgumentOutOfRangeException()
+        {
+            // arrange
+            long argument = 1;
+            long value = 1;
+            var name = nameof(argument);
+
+            // act + assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_float_when_given_an_argument_greater_than_value_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            float argument = 1;
+            float value = 0;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_float_when_given_an_argument_less_than_value_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            float argument = 0;
+            float value = 1;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_float_when_given_an_argument_equal_to_value_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            float argument = 1;
+            float value = 1;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_float_when_given_an_argument_greater_than_value_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            float argument = 1;
+            float value = 0;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_float_when_given_an_argument_less_than_value_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            float argument = 0;
+            float value = 1;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_float_when_given_an_argument_equal_to_value_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            float argument = 1;
+            float value = 1;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_float_when_given_an_argument_greater_than_value_and_a_name_then_throw_an_ArgumentOutOfRangeException()
+        {
+            // arrange
+            float argument = 1;
+            float value = 0;
+            var name = nameof(argument);
+
+            // act + assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_float_when_given_an_argument_less_than_value_and_a_name_then_dont_throw_an_Exception()
+        {
+            try
+            {
+                // arrange
+                float argument = 0;
+                float value = 1;
+                var name = nameof(argument);
+
+                // act
+                GuardAgainst.GreaterThanOrEqualTo(argument, value, name);
+            }
+            catch (Exception ex)
+            {
+                // assert fail
+                Assert.Fail($"Expected no exception, but actually got: {ex}.");
+            }
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_float_when_given_an_argument_equal_to_value_and_a_name_then_throw_an_ArgumentOutOfRangeException()
+        {
+            // arrange
+            float argument = 1;
+            float value = 1;
+            var name = nameof(argument);
+
+            // act + assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_double_when_given_an_argument_greater_than_value_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            double argument = 1D;
+            double value = 0D;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_double_when_given_an_argument_less_than_value_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            double argument = 0D;
+            double value = 1D;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_double_when_given_an_argument_equal_to_value_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            double argument = 1D;
+            double value = 1D;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_double_when_given_an_argument_greater_than_value_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            double argument = 1D;
+            double value = 0D;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_double_when_given_an_argument_less_than_value_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            double argument = 0D;
+            double value = 1D;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_double_when_given_an_argument_equal_to_value_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            double argument = 1D;
+            double value = 1D;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_double_when_given_an_argument_greater_than_value_and_a_name_then_dont_throw_an_ArgumentOutOfRangeException()
+        {
+            // arrange
+            double argument = 1D;
+            double value = 0D;
+            var name = nameof(argument);
+
+            // act + assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_double_when_given_an_argument_less_than_value_and_a_name_then_dont_throw_an_Exception()
+        {
+            try
+            {
+                // arrange
+                double argument = 0D;
+                double value = 1D;
+                var name = nameof(argument);
+
+                // act
+                GuardAgainst.GreaterThanOrEqualTo(argument, value, name);
+            }
+            catch (Exception ex)
+            {
+                // assert fail
+                Assert.Fail($"Expected no exception, but actually got: {ex}.");
+            }
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_double_when_given_an_argument_equal_to_value_and_a_name_then_throw_an_ArgumentOutOfRangeException()
+        {
+            // arrange
+            double argument = 1D;
+            double value = 1D;
+            var name = nameof(argument);
+
+            // act + assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_decimal_when_given_an_argument_greater_than_value_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            decimal argument = 1m;
+            decimal value = 0m;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_decimal_when_given_an_argument_less_than_value_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            decimal argument = 0m;
+            decimal value = 1m;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_decimal_when_given_an_argument_equal_to_value_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            decimal argument = 1m;
+            decimal value = 1m;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_decimal_when_given_an_argument_greater_than_value_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            decimal argument = 1m;
+            decimal value = 0m;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_decimal_when_given_an_argument_less_than_value_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            decimal argument = 0m;
+            decimal value = 1m;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_decimal_when_given_an_argument_equal_to_value_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            decimal argument = 1m;
+            decimal value = 1m;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_decimal_when_given_an_argument_greater_than_value_and_a_name_then_dont_throw_an_ArgumentOutOfRangeException()
+        {
+            // arrange
+            decimal argument = 1m;
+            decimal value = 0m;
+            var name = nameof(argument);
+
+            // act + assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_decimal_when_given_an_argument_less_than_value_and_a_name_then_dont_throw_an_Exception()
+        {
+            try
+            {
+                // arrange
+                decimal argument = 0m;
+                decimal value = 1m;
+                var name = nameof(argument);
+
+                // act
+                GuardAgainst.GreaterThanOrEqualTo(argument, value, name);
+            }
+            catch (Exception ex)
+            {
+                // assert fail
+                Assert.Fail($"Expected no exception, but actually got: {ex}.");
+            }
+        }
+
+        [TestMethod]
+        public void GreaterThanOrEqualTo_for_decimal_when_given_an_argument_equal_to_value_and_a_name_then_throw_an_ArgumentOutOfRangeException()
+        {
+            // arrange
+            decimal argument = 1m;
+            decimal value = 1m;
+            var name = nameof(argument);
+
+            // act + assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => GuardAgainst.GreaterThanOrEqualTo(argument, value, name));
+        }
+
     }
 }
