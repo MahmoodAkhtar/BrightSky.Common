@@ -2963,6 +2963,7 @@ namespace BrightSky.Common.Tests
             // act + assert
             Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.Null(argument, name));
         }
+
         [TestMethod]
         public void Null_of_T_when_given_an_argument_and_a_name_then_dont_throw_an_Exception()
         {
@@ -2980,6 +2981,112 @@ namespace BrightSky.Common.Tests
                 // assert fail
                 Assert.Fail($"Expected no exception, but actually got: {ex}.");
             }
+        }
+
+        [TestMethod]
+        public void NullOrEmpty_for_string_when_given_a_null_argument_and_a_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            string argument = null;
+            string name = nameof(argument);
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.NullOrEmpty(argument, name));
+        }
+
+        [TestMethod]
+        public void NullOrEmpty_for_string_when_given_a_null_argument_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            string argument = null;
+            string name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.NullOrEmpty(argument, name));
+        }
+
+        [TestMethod]
+        public void NullOrEmpty_for_string_when_given_a_null_argument_and_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            string argument = null;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.NullOrEmpty(argument, name));
+        }
+        [TestMethod]
+        public void NullOrEmpty_for_string_when_given_an_argument_and_a_name_then_dont_throw_an_Exception()
+        {
+            try
+            {
+                // arrange
+                string argument = "some value";
+                string name = nameof(argument);
+
+                // act
+                GuardAgainst.NullOrEmpty(argument, name);
+            }
+            catch (Exception ex)
+            {
+                // assert fail
+                Assert.Fail($"Expected no exception, but actually got: {ex}.");
+            }
+        }
+
+        [TestMethod]
+        public void NullOrEmpty_for_string_when_given_an_argument_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            string argument = "some value";
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.NullOrEmpty(argument, name));
+        }
+
+        [TestMethod]
+        public void NullOrEmpty_for_string_when_given_an_argument_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            string argument = "some value";
+            string name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.NullOrEmpty(argument, name));
+        }
+
+        [TestMethod]
+        public void NullOrEmpty_for_string_when_given_an_empty_argument_and_a_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            string argument = string.Empty;
+            string name = nameof(argument);
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.NullOrEmpty(argument, name));
+        }
+
+        [TestMethod]
+        public void NullOrEmpty_for_string_when_given_an_empty_argument_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            string argument = string.Empty;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.NullOrEmpty(argument, name));
+        }
+
+        [TestMethod]
+        public void NullOrEmpty_for_string_when_given_an_empty_argument_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            string argument = string.Empty;
+            string name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.NullOrEmpty(argument, name));
         }
     }
 }
