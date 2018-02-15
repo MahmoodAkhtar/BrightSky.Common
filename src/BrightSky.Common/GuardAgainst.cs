@@ -247,7 +247,7 @@ namespace BrightSky.Common
                 throw new ArgumentException($"{name} cannot be empty.", name);
         }
 
-        public static void NullOrEmpty<K, V>(IDictionary<K, V> argument, string name)
+        public static void NullOrEmpty<TKey, TValue>(IDictionary<TKey, TValue> argument, string name)
         {
             Null(argument, name);
             if (!argument.Any())
