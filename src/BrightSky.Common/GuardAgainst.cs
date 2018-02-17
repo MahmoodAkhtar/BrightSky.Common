@@ -121,39 +121,39 @@ namespace BrightSky.Common
                 throw new ArgumentOutOfRangeException(name, $"{name} cannot be greater than or equal to {value}.");
         }
 
-        public static void InsideRange(int argument, int min, int max, string name)
+        public static void InRange(int argument, int min, int max, string name)
         {
             ThrowIfNullOrEmpty(name);
             if (argument >= min && argument <= max)
-                throw new ArgumentOutOfRangeException(name, $"{name} cannot be inside the range of min {min} to max {max}.");
+                throw new ArgumentOutOfRangeException(name, $"{name} cannot be in the range of min {min} to max {max}.");
         }
 
-        public static void InsideRange(long argument, long min, long max, string name)
+        public static void InRange(long argument, long min, long max, string name)
         {
             ThrowIfNullOrEmpty(name);
             if (argument >= min && argument <= max)
-                throw new ArgumentOutOfRangeException(name, $"{name} cannot be inside the range of min {min} to max {max}.");
+                throw new ArgumentOutOfRangeException(name, $"{name} cannot be in the range of min {min} to max {max}.");
         }
 
-        public static void InsideRange(float argument, float min, float max, string name)
+        public static void InRange(float argument, float min, float max, string name)
         {
             ThrowIfNullOrEmpty(name);
             if (argument >= min && argument <= max)
-                throw new ArgumentOutOfRangeException(name, $"{name} cannot be inside the range of min {min} to max {max}.");
+                throw new ArgumentOutOfRangeException(name, $"{name} cannot be in the range of min {min} to max {max}.");
         }
 
-        public static void InsideRange(double argument, double min, double max, string name)
+        public static void InRange(double argument, double min, double max, string name)
         {
             ThrowIfNullOrEmpty(name);
             if (argument >= min && argument <= max)
-                throw new ArgumentOutOfRangeException(name, $"{name} cannot be inside the range of min {min} to max {max}.");
+                throw new ArgumentOutOfRangeException(name, $"{name} cannot be in the range of min {min} to max {max}.");
         }
 
-        public static void InsideRange(decimal argument, decimal min, decimal max, string name)
+        public static void InRange(decimal argument, decimal min, decimal max, string name)
         {
             ThrowIfNullOrEmpty(name);
             if (argument >= min && argument <= max)
-                throw new ArgumentOutOfRangeException(name, $"{name} cannot be inside the range of min {min} to max {max}.");
+                throw new ArgumentOutOfRangeException(name, $"{name} cannot be in the range of min {min} to max {max}.");
         }
 
         public static void LessThan(int argument, int value, string name)
@@ -261,39 +261,39 @@ namespace BrightSky.Common
                 throw new ArgumentException($"{name} cannot be whitespace only.", name);
         }
 
-        public static void OutsideRange(int argument, int min, int max, string name)
+        public static void OutOfRange(int argument, int min, int max, string name)
         {
             ThrowIfNullOrEmpty(name);
             if (argument < min || argument > max)
-                throw new ArgumentOutOfRangeException(name, $"{name} cannot be outside the range of min {min} to max {max}.");
+                throw new ArgumentOutOfRangeException(name, $"{name} cannot be out the range of min {min} to max {max}.");
         }
 
-        public static void OutsideRange(long argument, long min, long max, string name)
+        public static void OutOfRange(long argument, long min, long max, string name)
         {
             ThrowIfNullOrEmpty(name);
             if (argument < min || argument > max)
-                throw new ArgumentOutOfRangeException(name, $"{name} cannot be outside the range of min {min} to max {max}.");
+                throw new ArgumentOutOfRangeException(name, $"{name} cannot be out the range of min {min} to max {max}.");
         }
 
-        public static void OutsideRange(float argument, float min, float max, string name)
+        public static void OutOfRange(float argument, float min, float max, string name)
         {
             ThrowIfNullOrEmpty(name);
             if (argument < min || argument > max)
-                throw new ArgumentOutOfRangeException(name, $"{name} cannot be outside the range of min {min} to max {max}.");
+                throw new ArgumentOutOfRangeException(name, $"{name} cannot be out the range of min {min} to max {max}.");
         }
 
-        public static void OutsideRange(double argument, double min, double max, string name)
+        public static void OutOfRange(double argument, double min, double max, string name)
         {
             ThrowIfNullOrEmpty(name);
             if (argument < min || argument > max)
-                throw new ArgumentOutOfRangeException(name, $"{name} cannot be outside the range of min {min} to max {max}.");
+                throw new ArgumentOutOfRangeException(name, $"{name} cannot be out the range of min {min} to max {max}.");
         }
 
-        public static void OutsideRange(decimal argument, decimal min, decimal max, string name)
+        public static void OutOfRange(decimal argument, decimal min, decimal max, string name)
         {
             ThrowIfNullOrEmpty(name);
             if (argument < min || argument > max)
-                throw new ArgumentOutOfRangeException(name, $"{name} cannot be outside the range of min {min} to max {max}.");
+                throw new ArgumentOutOfRangeException(name, $"{name} cannot be out the range of min {min} to max {max}.");
         }
 
         internal static void ThrowIfNullOrEmpty(string argument)
