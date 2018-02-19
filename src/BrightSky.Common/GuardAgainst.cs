@@ -124,6 +124,8 @@ namespace BrightSky.Common
         public static void InRange(int argument, int min, int max, string name)
         {
             ThrowIfNullOrEmpty(name);
+            if (min >= max)
+                throw new ArgumentOutOfRangeException(nameof(min), $"{nameof(min)} cannot be greater than or equal to {nameof(max)}.");
             if (argument >= min && argument <= max)
                 throw new ArgumentOutOfRangeException(name, $"{name} cannot be in the range of min {min} to max {max}.");
         }
@@ -131,6 +133,8 @@ namespace BrightSky.Common
         public static void InRange(long argument, long min, long max, string name)
         {
             ThrowIfNullOrEmpty(name);
+            if (min >= max)
+                throw new ArgumentOutOfRangeException(nameof(min), $"{nameof(min)} cannot be greater than or equal to {nameof(max)}.");
             if (argument >= min && argument <= max)
                 throw new ArgumentOutOfRangeException(name, $"{name} cannot be in the range of min {min} to max {max}.");
         }
@@ -138,6 +142,8 @@ namespace BrightSky.Common
         public static void InRange(float argument, float min, float max, string name)
         {
             ThrowIfNullOrEmpty(name);
+            if (min >= max)
+                throw new ArgumentOutOfRangeException(nameof(min), $"{nameof(min)} cannot be greater than or equal to {nameof(max)}.");
             if (argument >= min && argument <= max)
                 throw new ArgumentOutOfRangeException(name, $"{name} cannot be in the range of min {min} to max {max}.");
         }
@@ -145,6 +151,8 @@ namespace BrightSky.Common
         public static void InRange(double argument, double min, double max, string name)
         {
             ThrowIfNullOrEmpty(name);
+            if (min >= max)
+                throw new ArgumentOutOfRangeException(nameof(min), $"{nameof(min)} cannot be greater than or equal to {nameof(max)}.");
             if (argument >= min && argument <= max)
                 throw new ArgumentOutOfRangeException(name, $"{name} cannot be in the range of min {min} to max {max}.");
         }
@@ -152,6 +160,8 @@ namespace BrightSky.Common
         public static void InRange(decimal argument, decimal min, decimal max, string name)
         {
             ThrowIfNullOrEmpty(name);
+            if (min >= max)
+                throw new ArgumentOutOfRangeException(nameof(min), $"{nameof(min)} cannot be greater than or equal to {nameof(max)}.");
             if (argument >= min && argument <= max)
                 throw new ArgumentOutOfRangeException(name, $"{name} cannot be in the range of min {min} to max {max}.");
         }
