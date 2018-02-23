@@ -5,9 +5,9 @@
     <Authors>Mahmood Akhtar</Authors>
     <Company>BrightSkyIT Ltd</Company>
     <PackageTags>BrightSky Common</PackageTags>
-    <AssemblyVersion>1.0.18050.0929</AssemblyVersion>
-    <FileVersion>1.0.18050.0929</FileVersion>
-    <Version>1.0.0-alpha-15</Version>
+    <AssemblyVersion>1.0.18054.0400</AssemblyVersion>
+    <FileVersion>1.0.18054.0400</FileVersion>
+    <Version>1.0.0-alpha-16</Version>
     <RepositoryUrl>https://github.com/MahmoodAkhtar/BrightSky.Common</RepositoryUrl>
     <RepositoryType>Github</RepositoryType>
     <PackageProjectUrl>https://github.com/MahmoodAkhtar/BrightSky.Common</PackageProjectUrl>

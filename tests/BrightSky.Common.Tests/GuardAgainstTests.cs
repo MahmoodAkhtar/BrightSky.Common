@@ -1726,6 +1726,666 @@ namespace BrightSky.Common.Tests
         }
 
         [TestMethod]
+        public void InRange_for_double_when_given_an_argument_and_min_is_equal_to_max_and_a_name_then_throw_an_ArgumentOutOfRangeException()
+        {
+            // arrange
+            double argument = 2;
+            double min = 3;
+            double max = 3;
+            var name = nameof(argument);
+
+            // act + assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_double_when_given_an_argument_and_min_is_equal_to_max_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            double argument = 2;
+            double min = 3;
+            double max = 3;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_double_when_given_an_argument_and_min_is_equal_to_max_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            double argument = 2;
+            double min = 3;
+            double max = 3;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_double_when_given_an_argument_and_min_is_greater_than_max_and_a_name_then_throw_an_ArgumentOutOfRangeException()
+        {
+            // arrange
+            double argument = 2;
+            double min = 3;
+            double max = 1;
+            var name = nameof(argument);
+
+            // act + assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_double_when_given_an_argument_and_min_is_greater_than_max_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            double argument = 2;
+            double min = 3;
+            double max = 1;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_double_when_given_an_argument_and_min_is_greater_than_max_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            double argument = 2;
+            double min = 3;
+            double max = 1;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_double_when_given_an_argument_in_range_and_a_name_then_throw_an_ArgumentOutOfRangeException()
+        {
+            // arrange
+            double argument = 2;
+            double min = 1;
+            double max = 3;
+            var name = nameof(argument);
+
+            // act + assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_double_when_given_an_argument_in_range_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            double argument = 2;
+            double min = 1;
+            double max = 3;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_double_when_given_an_argument_in_range_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            double argument = 2;
+            double min = 1;
+            double max = 3;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_double_when_given_an_argument_out_of_range_and_a_name_then_dont_throw_an_Exception()
+        {
+            try
+            {
+                // arrange
+                double argument = 4;
+                double min = 1;
+                double max = 3;
+                var name = nameof(argument);
+
+                // act
+                GuardAgainst.InRange(argument, min, max, name);
+
+            }
+            catch (Exception ex)
+            {
+                // assert fail
+                Assert.Fail($"Expected no exception, but actually got: {ex}.");
+            }
+        }
+
+        [TestMethod]
+        public void InRange_for_double_when_given_an_argument_out_of_range_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            double argument = 2;
+            double min = 1;
+            double max = 3;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_double_when_given_an_argument_out_of_range_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            double argument = 4;
+            double min = 1;
+            double max = 3;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_float_when_given_an_argument_and_min_is_equal_to_max_and_a_name_then_throw_an_ArgumentOutOfRangeException()
+        {
+            // arrange
+            float argument = 2;
+            float min = 3;
+            float max = 3;
+            var name = nameof(argument);
+
+            // act + assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_float_when_given_an_argument_and_min_is_equal_to_max_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            float argument = 2;
+            float min = 3;
+            float max = 3;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_float_when_given_an_argument_and_min_is_equal_to_max_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            float argument = 2;
+            float min = 3;
+            float max = 3;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_float_when_given_an_argument_and_min_is_greater_than_max_and_a_name_then_throw_an_ArgumentOutOfRangeException()
+        {
+            // arrange
+            float argument = 2;
+            float min = 3;
+            float max = 1;
+            var name = nameof(argument);
+
+            // act + assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_float_when_given_an_argument_and_min_is_greater_than_max_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            float argument = 2;
+            float min = 3;
+            float max = 1;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_float_when_given_an_argument_and_min_is_greater_than_max_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            float argument = 2;
+            float min = 3;
+            float max = 1;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_float_when_given_an_argument_in_range_and_a_name_then_throw_an_ArgumentOutOfRangeException()
+        {
+            // arrange
+            float argument = 2;
+            float min = 1;
+            float max = 3;
+            var name = nameof(argument);
+
+            // act + assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_float_when_given_an_argument_in_range_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            float argument = 2;
+            float min = 1;
+            float max = 3;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_float_when_given_an_argument_in_range_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            float argument = 2;
+            float min = 1;
+            float max = 3;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_float_when_given_an_argument_out_of_range_and_a_name_then_dont_throw_an_Exception()
+        {
+            try
+            {
+                // arrange
+                float argument = 4;
+                float min = 1;
+                float max = 3;
+                var name = nameof(argument);
+
+                // act
+                GuardAgainst.InRange(argument, min, max, name);
+
+            }
+            catch (Exception ex)
+            {
+                // assert fail
+                Assert.Fail($"Expected no exception, but actually got: {ex}.");
+            }
+        }
+
+        [TestMethod]
+        public void InRange_for_float_when_given_an_argument_out_of_range_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            float argument = 2;
+            float min = 1;
+            float max = 3;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_float_when_given_an_argument_out_of_range_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            float argument = 4;
+            float min = 1;
+            float max = 3;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_int_when_given_an_argument_and_min_is_equal_to_max_and_a_name_then_throw_an_ArgumentOutOfRangeException()
+        {
+            // arrange
+            var argument = 2;
+            var min = 3;
+            var max = 3;
+            var name = nameof(argument);
+
+            // act + assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_int_when_given_an_argument_and_min_is_equal_to_max_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            var argument = 2;
+            var min = 3;
+            var max = 3;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_int_when_given_an_argument_and_min_is_equal_to_max_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            var argument = 2;
+            var min = 3;
+            var max = 3;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_int_when_given_an_argument_and_min_is_greater_than_max_and_a_name_then_throw_an_ArgumentOutOfRangeException()
+        {
+            // arrange
+            var argument = 2;
+            var min = 3;
+            var max = 1;
+            var name = nameof(argument);
+
+            // act + assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_int_when_given_an_argument_and_min_is_greater_than_max_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            var argument = 2;
+            var min = 3;
+            var max = 1;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_int_when_given_an_argument_and_min_is_greater_than_max_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            var argument = 2;
+            var min = 3;
+            var max = 1;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_int_when_given_an_argument_in_range_and_a_name_then_throw_an_ArgumentOutOfRangeException()
+        {
+            // arrange
+            var argument = 2;
+            var min = 1;
+            var max = 3;
+            var name = nameof(argument);
+
+            // act + assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_int_when_given_an_argument_in_range_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            var argument = 2;
+            var min = 1;
+            var max = 3;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_int_when_given_an_argument_in_range_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            var argument = 2;
+            var min = 1;
+            var max = 3;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_int_when_given_an_argument_out_of_range_and_a_name_then_dont_throw_an_Exception()
+        {
+            try
+            {
+                // arrange
+                var argument = 4;
+                var min = 1;
+                var max = 3;
+                var name = nameof(argument);
+
+                // act
+                GuardAgainst.InRange(argument, min, max, name);
+
+            }
+            catch (Exception ex)
+            {
+                // assert fail
+                Assert.Fail($"Expected no exception, but actually got: {ex}.");
+            }
+        }
+
+        [TestMethod]
+        public void InRange_for_int_when_given_an_argument_out_of_range_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            var argument = 2;
+            var min = 1;
+            var max = 3;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_int_when_given_an_argument_out_of_range_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            var argument = 4;
+            var min = 1;
+            var max = 3;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_long_when_given_an_argument_and_min_is_equal_to_max_and_a_name_then_throw_an_ArgumentOutOfRangeException()
+        {
+            // arrange
+            long argument = 2;
+            long min = 3;
+            long max = 3;
+            var name = nameof(argument);
+
+            // act + assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_long_when_given_an_argument_and_min_is_equal_to_max_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            long argument = 2;
+            long min = 3;
+            long max = 3;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_long_when_given_an_argument_and_min_is_equal_to_max_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            long argument = 2;
+            long min = 3;
+            long max = 3;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_long_when_given_an_argument_and_min_is_greater_than_max_and_a_name_then_throw_an_ArgumentOutOfRangeException()
+        {
+            // arrange
+            long argument = 2;
+            long min = 3;
+            long max = 1;
+            var name = nameof(argument);
+
+            // act + assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_long_when_given_an_argument_and_min_is_greater_than_max_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            long argument = 2;
+            long min = 3;
+            long max = 1;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_long_when_given_an_argument_and_min_is_greater_than_max_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            long argument = 2;
+            long min = 3;
+            long max = 1;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_long_when_given_an_argument_in_range_and_a_name_then_throw_an_ArgumentOutOfRangeException()
+        {
+            // arrange
+            long argument = 2;
+            long min = 1;
+            long max = 3;
+            var name = nameof(argument);
+
+            // act + assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_long_when_given_an_argument_in_range_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            long argument = 2;
+            long min = 1;
+            long max = 3;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_long_when_given_an_argument_in_range_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            long argument = 2;
+            long min = 1;
+            long max = 3;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_long_when_given_an_argument_out_of_range_and_a_name_then_dont_throw_an_Exception()
+        {
+            try
+            {
+                // arrange
+                long argument = 4;
+                long min = 1;
+                long max = 3;
+                var name = nameof(argument);
+
+                // act
+                GuardAgainst.InRange(argument, min, max, name);
+
+            }
+            catch (Exception ex)
+            {
+                // assert fail
+                Assert.Fail($"Expected no exception, but actually got: {ex}.");
+            }
+        }
+
+        [TestMethod]
+        public void InRange_for_long_when_given_an_argument_out_of_range_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            long argument = 2;
+            long min = 1;
+            long max = 3;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
+        public void InRange_for_long_when_given_an_argument_out_of_range_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            long argument = 4;
+            long min = 1;
+            long max = 3;
+            var name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.InRange(argument, min, max, name));
+        }
+
+        [TestMethod]
         public void Internal_ThrowIfNullOrEmpty_when_given_a_string_then_dont_throw_an_Exception()
         {
             try
@@ -2984,10 +3644,10 @@ namespace BrightSky.Common.Tests
         }
 
         [TestMethod]
-        public void NullOrEmpty_for_string_when_given_a_null_argument_and_a_name_then_throw_an_ArgumentNullException()
+        public void NullOrEmpty_for_IDictionary_of_TKey_TValue_when_given_a_null_argument_and_a_name_then_throw_an_ArgumentNullException()
         {
             // arrange
-            string argument = null;
+            Dictionary<string, string> argument = null;
             string name = nameof(argument);
 
             // act + assert
@@ -2995,10 +3655,10 @@ namespace BrightSky.Common.Tests
         }
 
         [TestMethod]
-        public void NullOrEmpty_for_string_when_given_a_null_argument_and_an_empty_name_then_throw_an_ArgumentException()
+        public void NullOrEmpty_for_IDictionary_of_TKey_TValue_when_given_a_null_argument_and_an_empty_name_then_throw_an_ArgumentException()
         {
             // arrange
-            string argument = null;
+            Dictionary<string, string> argument = null;
             string name = string.Empty;
 
             // act + assert
@@ -3006,10 +3666,10 @@ namespace BrightSky.Common.Tests
         }
 
         [TestMethod]
-        public void NullOrEmpty_for_string_when_given_a_null_argument_and_name_then_throw_an_ArgumentNullException()
+        public void NullOrEmpty_for_IDictionary_of_TKey_TValue_when_given_a_null_argument_and_name_then_throw_an_ArgumentNullException()
         {
             // arrange
-            string argument = null;
+            Dictionary<string, string> argument = null;
             string name = null;
 
             // act + assert
@@ -3017,12 +3677,12 @@ namespace BrightSky.Common.Tests
         }
 
         [TestMethod]
-        public void NullOrEmpty_for_string_when_given_an_argument_and_a_name_then_dont_throw_an_Exception()
+        public void NullOrEmpty_for_IDictionary_of_TKey_TValue_when_given_an_argument_and_a_name_then_dont_throw_an_Exception()
         {
             try
             {
                 // arrange
-                string argument = "some value";
+                var argument = new Dictionary<string, string>() { { "Key one", "Value one" } };
                 string name = nameof(argument);
 
                 // act
@@ -3036,10 +3696,10 @@ namespace BrightSky.Common.Tests
         }
 
         [TestMethod]
-        public void NullOrEmpty_for_string_when_given_an_argument_and_a_null_name_then_throw_an_ArgumentNullException()
+        public void NullOrEmpty_for_IDictionary_of_TKey_TValue_when_given_an_argument_and_a_null_name_then_throw_an_ArgumentNullException()
         {
             // arrange
-            string argument = "some value";
+            var argument = new Dictionary<string, string>() { { "Key one", "Value one" } };
             string name = null;
 
             // act + assert
@@ -3047,43 +3707,10 @@ namespace BrightSky.Common.Tests
         }
 
         [TestMethod]
-        public void NullOrEmpty_for_string_when_given_an_argument_and_an_empty_name_then_throw_an_ArgumentException()
+        public void NullOrEmpty_for_IDictionary_of_TKey_TValue_when_given_an_argument_and_an_empty_name_then_throw_an_ArgumentException()
         {
             // arrange
-            string argument = "some value";
-            string name = string.Empty;
-
-            // act + assert
-            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.NullOrEmpty(argument, name));
-        }
-
-        [TestMethod]
-        public void NullOrEmpty_for_string_when_given_an_empty_argument_and_a_name_then_throw_an_ArgumentException()
-        {
-            // arrange
-            string argument = string.Empty;
-            string name = nameof(argument);
-
-            // act + assert
-            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.NullOrEmpty(argument, name));
-        }
-
-        [TestMethod]
-        public void NullOrEmpty_for_string_when_given_an_empty_argument_and_a_null_name_then_throw_an_ArgumentNullException()
-        {
-            // arrange
-            string argument = string.Empty;
-            string name = null;
-
-            // act + assert
-            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.NullOrEmpty(argument, name));
-        }
-
-        [TestMethod]
-        public void NullOrEmpty_for_string_when_given_an_empty_argument_and_an_empty_name_then_throw_an_ArgumentException()
-        {
-            // arrange
-            string argument = string.Empty;
+            var argument = new Dictionary<string, string>() { { "Key one", "Value one" } };
             string name = string.Empty;
 
             // act + assert
@@ -3198,10 +3825,10 @@ namespace BrightSky.Common.Tests
         }
 
         [TestMethod]
-        public void NullOrEmpty_for_IDictionary_of_TKey_TValue_when_given_a_null_argument_and_a_name_then_throw_an_ArgumentNullException()
+        public void NullOrEmpty_for_string_when_given_a_null_argument_and_a_name_then_throw_an_ArgumentNullException()
         {
             // arrange
-            Dictionary<string, string> argument = null;
+            string argument = null;
             string name = nameof(argument);
 
             // act + assert
@@ -3209,10 +3836,10 @@ namespace BrightSky.Common.Tests
         }
 
         [TestMethod]
-        public void NullOrEmpty_for_IDictionary_of_TKey_TValue_when_given_a_null_argument_and_an_empty_name_then_throw_an_ArgumentException()
+        public void NullOrEmpty_for_string_when_given_a_null_argument_and_an_empty_name_then_throw_an_ArgumentException()
         {
             // arrange
-            Dictionary<string, string> argument = null;
+            string argument = null;
             string name = string.Empty;
 
             // act + assert
@@ -3220,10 +3847,10 @@ namespace BrightSky.Common.Tests
         }
 
         [TestMethod]
-        public void NullOrEmpty_for_IDictionary_of_TKey_TValue_when_given_a_null_argument_and_name_then_throw_an_ArgumentNullException()
+        public void NullOrEmpty_for_string_when_given_a_null_argument_and_name_then_throw_an_ArgumentNullException()
         {
             // arrange
-            Dictionary<string, string> argument = null;
+            string argument = null;
             string name = null;
 
             // act + assert
@@ -3231,12 +3858,12 @@ namespace BrightSky.Common.Tests
         }
 
         [TestMethod]
-        public void NullOrEmpty_for_IDictionary_of_TKey_TValue_when_given_an_argument_and_a_name_then_dont_throw_an_Exception()
+        public void NullOrEmpty_for_string_when_given_an_argument_and_a_name_then_dont_throw_an_Exception()
         {
             try
             {
                 // arrange
-                var argument = new Dictionary<string, string>() { { "Key one", "Value one" } };
+                string argument = "some value";
                 string name = nameof(argument);
 
                 // act
@@ -3250,10 +3877,10 @@ namespace BrightSky.Common.Tests
         }
 
         [TestMethod]
-        public void NullOrEmpty_for_IDictionary_of_TKey_TValue_when_given_an_argument_and_a_null_name_then_throw_an_ArgumentNullException()
+        public void NullOrEmpty_for_string_when_given_an_argument_and_a_null_name_then_throw_an_ArgumentNullException()
         {
             // arrange
-            var argument = new Dictionary<string, string>() { { "Key one", "Value one" } };
+            string argument = "some value";
             string name = null;
 
             // act + assert
@@ -3261,17 +3888,48 @@ namespace BrightSky.Common.Tests
         }
 
         [TestMethod]
-        public void NullOrEmpty_for_IDictionary_of_TKey_TValue_when_given_an_argument_and_an_empty_name_then_throw_an_ArgumentException()
+        public void NullOrEmpty_for_string_when_given_an_argument_and_an_empty_name_then_throw_an_ArgumentException()
         {
             // arrange
-            var argument = new Dictionary<string, string>() { { "Key one", "Value one" } };
+            string argument = "some value";
             string name = string.Empty;
 
             // act + assert
             Assert.ThrowsException<ArgumentException>(() => GuardAgainst.NullOrEmpty(argument, name));
         }
 
+        [TestMethod]
+        public void NullOrEmpty_for_string_when_given_an_empty_argument_and_a_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            string argument = string.Empty;
+            string name = nameof(argument);
 
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.NullOrEmpty(argument, name));
+        }
+
+        [TestMethod]
+        public void NullOrEmpty_for_string_when_given_an_empty_argument_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            string argument = string.Empty;
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.NullOrEmpty(argument, name));
+        }
+
+        [TestMethod]
+        public void NullOrEmpty_for_string_when_given_an_empty_argument_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            string argument = string.Empty;
+            string name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.NullOrEmpty(argument, name));
+        }
         [TestMethod]
         public void NullOrWhitespace_when_given_a_null_argument_and_a_name_then_throw_an_ArgumentNullException()
         {
@@ -3303,6 +3961,39 @@ namespace BrightSky.Common.Tests
 
             // act + assert
             Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.NullOrWhitespace(argument, name));
+        }
+
+        [TestMethod]
+        public void NullOrWhitespace_when_given_a_whitespace_argument_and_a_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            string argument = " ";
+            string name = nameof(argument);
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.NullOrWhitespace(argument, name));
+        }
+
+        [TestMethod]
+        public void NullOrWhitespace_when_given_a_whitespace_argument_and_a_null_name_then_throw_an_ArgumentNullException()
+        {
+            // arrange
+            string argument = " ";
+            string name = null;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.NullOrWhitespace(argument, name));
+        }
+
+        [TestMethod]
+        public void NullOrWhitespace_when_given_a_whitespace_argument_and_an_empty_name_then_throw_an_ArgumentException()
+        {
+            // arrange
+            string argument = " ";
+            string name = string.Empty;
+
+            // act + assert
+            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.NullOrWhitespace(argument, name));
         }
 
         [TestMethod]
@@ -3378,207 +4069,5 @@ namespace BrightSky.Common.Tests
             // act + assert
             Assert.ThrowsException<ArgumentException>(() => GuardAgainst.NullOrWhitespace(argument, name));
         }
-
-
-        [TestMethod]
-        public void NullOrWhitespace_when_given_a_whitespace_argument_and_a_name_then_throw_an_ArgumentException()
-        {
-            // arrange
-            string argument = " ";
-            string name = nameof(argument);
-
-            // act + assert
-            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.NullOrWhitespace(argument, name));
-        }
-
-        [TestMethod]
-        public void NullOrWhitespace_when_given_a_whitespace_argument_and_a_null_name_then_throw_an_ArgumentNullException()
-        {
-            // arrange
-            string argument = " ";
-            string name = null;
-
-            // act + assert
-            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.NullOrWhitespace(argument, name));
-        }
-
-        [TestMethod]
-        public void NullOrWhitespace_when_given_a_whitespace_argument_and_an_empty_name_then_throw_an_ArgumentException()
-        {
-            // arrange
-            string argument = " ";
-            string name = string.Empty;
-
-            // act + assert
-            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.NullOrWhitespace(argument, name));
-        }
-
-
-        [TestMethod]
-        public void InRange_when_given_an_argument_and_min_is_greater_than_max_and_an_empty_name_then_throw_an_ArgumentException()
-        {
-            // arrange
-            var argument = 2;
-            var min = 3;
-            var max = 1;
-            var name = string.Empty;
-
-            // act + assert
-            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.InRange(argument, min, max, name));
-        }
-
-        [TestMethod]
-        public void InRange_when_given_an_argument_and_min_is_greater_than_max_and_a_name_then_throw_an_ArgumentOutOfRangeException()
-        {
-            // arrange
-            var argument = 2;
-            var min = 3;
-            var max = 1;
-            var name = nameof(argument);
-
-            // act + assert
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => GuardAgainst.InRange(argument, min, max, name));
-        }
-
-        [TestMethod]
-        public void InRange_when_given_an_argument_and_min_is_greater_than_max_and_a_null_name_then_throw_an_ArgumentNullException()
-        {
-            // arrange
-            var argument = 2;
-            var min = 3;
-            var max = 1;
-            string name = null;
-
-            // act + assert
-            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.InRange(argument, min, max, name));
-        }
-
-        [TestMethod]
-        public void InRange_when_given_an_argument_and_min_is_equal_to_max_and_an_empty_name_then_throw_an_ArgumentException()
-        {
-            // arrange
-            var argument = 2;
-            var min = 3;
-            var max = 3;
-            var name = string.Empty;
-
-            // act + assert
-            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.InRange(argument, min, max, name));
-        }
-
-        [TestMethod]
-        public void InRange_when_given_an_argument_and_min_is_equal_to_max_and_a_name_then_throw_an_ArgumentOutOfRangeException()
-        {
-            // arrange
-            var argument = 2;
-            var min = 3;
-            var max = 3;
-            var name = nameof(argument);
-
-            // act + assert
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => GuardAgainst.InRange(argument, min, max, name));
-        }
-
-        [TestMethod]
-        public void InRange_when_given_an_argument_and_min_is_equal_to_max_and_a_null_name_then_throw_an_ArgumentNullException()
-        {
-            // arrange
-            var argument = 2;
-            var min = 3;
-            var max = 3;
-            string name = null;
-
-            // act + assert
-            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.InRange(argument, min, max, name));
-        }
-
-
-        [TestMethod]
-        public void InRange_when_given_an_argument_in_range_and_an_empty_name_then_throw_an_ArgumentException()
-        {
-            // arrange
-            var argument = 2;
-            var min = 1;
-            var max = 3;
-            var name = string.Empty;
-
-            // act + assert
-            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.InRange(argument, min, max, name));
-        }
-
-        [TestMethod]
-        public void InRange_when_given_an_argument_in_range_and_a_name_then_throw_an_ArgumentOutOfRangeException()
-        {
-            // arrange
-            var argument = 2;
-            var min = 1;
-            var max = 3;
-            var name = nameof(argument);
-
-            // act + assert
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => GuardAgainst.InRange(argument, min, max, name));
-        }
-
-        [TestMethod]
-        public void InRange_when_given_an_argument_in_range_and_a_null_name_then_throw_an_ArgumentNullException()
-        {
-            // arrange
-            var argument = 2;
-            var min = 1;
-            var max = 3;
-            string name = null;
-
-            // act + assert
-            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.InRange(argument, min, max, name));
-        }
-
-        [TestMethod]
-        public void InRange_when_given_an_argument_out_of_range_and_an_empty_name_then_throw_an_ArgumentException()
-        {
-            // arrange
-            var argument = 4;
-            var min = 1;
-            var max = 3;
-            var name = string.Empty;
-
-            // act + assert
-            Assert.ThrowsException<ArgumentException>(() => GuardAgainst.InRange(argument, min, max, name));
-        }
-
-        [TestMethod]
-        public void InRange_when_given_an_argument_out_of_range_and_a_name_then_dont_throw_an_Exception()
-        {
-            try
-            {
-                // arrange
-                var argument = 4;
-                var min = 1;
-                var max = 3;
-                var name = nameof(argument);
-
-                // act
-                GuardAgainst.InRange(argument, min, max, name);
-
-            }
-            catch (Exception ex)
-            {
-                // assert fail
-                Assert.Fail($"Expected no exception, but actually got: {ex}.");
-            }
-        }
-
-        [TestMethod]
-        public void InRange_when_given_an_argument_out_of_range_and_a_null_name_then_throw_an_ArgumentNullException()
-        {
-            // arrange
-            var argument = 2;
-            var min = 1;
-            var max = 3;
-            string name = null;
-
-            // act + assert
-            Assert.ThrowsException<ArgumentNullException>(() => GuardAgainst.InRange(argument, min, max, name));
-        }
-
     }
 }
