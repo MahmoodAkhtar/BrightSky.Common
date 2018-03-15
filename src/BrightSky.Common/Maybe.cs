@@ -21,12 +21,6 @@ namespace BrightSky.Common
         {
             get
             {
-                var that = this;
-
-                Invariant.ViolatedBy(
-                    () => that.HasNoValue,
-                    $"There is no {nameof(Value)}.");
-
                 return _value;
             }
         }
@@ -53,8 +47,7 @@ namespace BrightSky.Common
 
         public static bool operator ==(Maybe<T> maybe, T value)
         {
-            if (maybe.HasNoValue)
-                return false;
+            if (maybe.HasNoValue) return false;
 
             return maybe.Value.Equals(value);
         }
@@ -66,41 +59,31 @@ namespace BrightSky.Common
 
         public override bool Equals(object obj)
         {
-            if (obj is T)
-            {
-                obj = new Maybe<T>((T)obj);
-            }
-
-            if (!(obj is Maybe<T>))
-                return false;
-
+            if (obj is T) obj = new Maybe<T>((T)obj);
+            if (!(obj is Maybe<T>)) return false;
             var other = (Maybe<T>)obj;
+
             return Equals(other);
         }
 
         public bool Equals(Maybe<T> other)
         {
-            if (HasNoValue && other.HasNoValue)
-                return true;
-
-            if (HasNoValue || other.HasNoValue)
-                return false;
+            if (HasNoValue && other.HasNoValue) return true;
+            if (HasNoValue || other.HasNoValue) return false;
 
             return _value.Equals(other._value);
         }
 
         public override int GetHashCode()
         {
-            if (HasNoValue)
-                return 0;
+            if (HasNoValue) return 0;
 
             return _value.GetHashCode();
         }
 
         public override string ToString()
         {
-            if (HasNoValue)
-                return "No value";
+            if (HasNoValue) return "<No value>";
 
             return Value.ToString();
         }

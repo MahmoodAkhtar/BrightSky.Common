@@ -15,14 +15,11 @@ namespace BrightSky.Common.StateMachine
             End = end;
         }
 
-        public static Transition Create(State start, Command command, State end)
-        {
-            GuardAgainst.Null(start, nameof(start));
-            GuardAgainst.Null(command, nameof(command));
-            GuardAgainst.Null(end, nameof(end));
-
-            return new Transition(start, command, end);
-        }
+        public static Result<Transition> Create(State start, Command command, State end) => Result.Combine(
+            Guard.IfNull(start, nameof(start)),
+            Guard.IfNull(command, nameof(command)),
+            Guard.IfNull(end, nameof(end)))
+            .Map(() => new Transition(start, command, end));
 
         protected override IEnumerable<object> GetEqualityComponents()
         {

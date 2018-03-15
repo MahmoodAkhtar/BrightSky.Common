@@ -122,9 +122,7 @@ namespace BrightSky.Common
         [DebuggerStepThrough]
         internal Result(bool isFailure, T value, string error)
         {
-            Invariant.ViolatedBy(
-                () => !isFailure && value == null,
-                $"{nameof(value)} cannot be null.");
+            if (!isFailure && value == null) throw new ArgumentException($"No failure therefore {nameof(value)} cannot be null.");
 
             _logic = new ResultCommonLogic(isFailure, error);
             _value = value;
@@ -139,12 +137,6 @@ namespace BrightSky.Common
             [DebuggerStepThrough]
             get
             {
-                var that = this; // cannot capture 'this' as 'this' is a struct
-
-                Invariant.ViolatedBy(
-                    () => that.IsFailure,
-                    $"There is no {nameof(Value)} for failure.");
-
                 return _value;
             }
         }
@@ -180,13 +172,7 @@ namespace BrightSky.Common
         [DebuggerStepThrough]
         public ResultCommonLogic(bool isFailure, string error)
         {
-            Invariant.ViolatedBy(
-                () => isFailure && string.IsNullOrEmpty(error),
-                $"There must be an error message for failure, {nameof(error)} cannot be null or empty.");
-
-            Invariant.ViolatedBy(
-                () => isFailure == false && error != null,
-                $"There must be no error message for success, {nameof(error)} must be null.");
+            if (isFailure && string.IsNullOrWhiteSpace(error)) throw new ArgumentException($"For a failure {nameof(error)} cannot be null or epmty or only whitespace.");
 
             IsFailure = isFailure;
             _error = error;
@@ -197,10 +183,6 @@ namespace BrightSky.Common
             [DebuggerStepThrough]
             get
             {
-                Invariant.ViolatedBy(
-                    () => IsSuccess,
-                    $"There is no {nameof(Error)} for success.");
-
                 return _error;
             }
         }

@@ -15,34 +15,25 @@ namespace BrightSky.Common.StateMachine
 
         public State CurrentState { get; private set; }
 
-        public static Process Create(IEnumerable<Transition> transitions, State state)
-        {
-            GuardAgainst.NullOrEmpty(transitions, nameof(transitions));
-            GuardAgainst.Null(state, nameof(state));
+        public static Result<Process> Create(IEnumerable<Transition> transitions, State state) => Result.Combine(
+            Guard.IfNullOrEmpty(transitions, nameof(transitions)),
+            Guard.IfNull(state, nameof(state)),
+            Guard.IfViolatedBy(
+                () => transitions.Any(x => x.Start != state || x.End != state),
+                $"{nameof(transitions)} has a transition that does not start with or end with state {state.GetType()}."))
+            .Map(() => new Process(transitions, state));
 
-            Invariant.SatisfiedBy(
-                () => transitions.Any(x => x.Start != state && x.End != state),
-                $"State {state.Name} does not exit in any {nameof(transitions)}.");
-
-            return new Process(transitions, state);
-        }
-
-        public State MoveNext(Command command)
-        {
-            GuardAgainst.Null(command, nameof(command));
-
-            Invariant.SatisfiedBy(
+        public Result<State> MoveNext(Command command) => Result.Combine(
+            Guard.IfNull(command, nameof(command)),
+            Guard.IfSatisfiedBy(
                 () => _transitions.Any(x => x.Start == CurrentState && x.Command == command),
-                $"Current state {CurrentState.Name} does not accept the command {command.Name}.");
-
-            CurrentState.RunExitActions(command);
-
-            CurrentState = _transitions.Where(x => x.Start == CurrentState && x.Command == command).Select(x => x.End).First();
-
-            CurrentState.RunEnterActions(command);
-
-            return CurrentState;
-        }
+                $"Current state {CurrentState.GetType()} does not accept the command {command.GetType()}."))
+            .OnSuccess(() => CurrentState.RunExitActions(command))
+            .Map(() => _transitions.Where(x => x.Start == CurrentState && x.Command == command).Select(x => x.End).First())
+            .OnSuccess(x =>
+            {
+                x.RunEnterActions(command);
+            });
 
         protected override IEnumerable<object> GetEqualityComponents()
         {

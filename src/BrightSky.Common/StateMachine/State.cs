@@ -26,32 +26,29 @@ namespace BrightSky.Common.StateMachine
 
         public string Name { get; }
 
-        public static State Create(string name)
-        {
-            GuardAgainst.NullOrWhitespace(name, nameof(name));
+        public Result<State> Create(string name) => Result.Combine(
+            Guard.IfNullOrWhiteSpace(name, nameof(name)))
+            .Map(() => new State(name));
 
-            return new State(name);
-        }
+        public Result RunEnterActions(Command command) => Result.Combine(
+            Guard.IfNull(command, nameof(command)))
+            .OnSuccess(() => _logic.RunActions(this, command, _enterActions, _enterCatchAction));
 
-        public void RunEnterActions(Command command)
-        {
-            _logic.RunActions(this, command, _enterActions, _enterCatchAction);
-        }
+        public Result RunExitActions(Command command) => Result.Combine(
+            Guard.IfNull(command, nameof(command)))
+            .OnSuccess(() => _logic.RunActions(this, command, _exitActions, _exitCatchAction));
 
-        public void RunExitActions(Command command)
-        {
-            _logic.RunActions(this, command, _exitActions, _exitCatchAction);
-        }
+        public Result SetEnterActions(IEnumerable<Action<State, Command>> actions, Action<Exception> catchAction) => Result.Combine(
+            Guard.IfNullOrEmpty(actions, nameof(actions)),
+            Guard.IfNull(catchAction, nameof(catchAction)))
+            .OnSuccess(() => _logic.FilterActionsForState(this, actions, catchAction))
+            .OnSuccess(x => (_enterActions, _enterCatchAction) = x);
 
-        public void SetEnterActions(IEnumerable<Action<State, Command>> actions, Action<Exception> catchAction)
-        {
-            (_enterActions, _enterCatchAction) = _logic.GetActions(this, actions, catchAction);
-        }
-
-        public void SetExitActions(IEnumerable<Action<State, Command>> actions, Action<Exception> catchAction)
-        {
-            (_exitActions, _exitCatchAction) = _logic.GetActions(this, actions, catchAction);
-        }
+        public Result SetExitActions(IEnumerable<Action<State, Command>> actions, Action<Exception> catchAction) => Result.Combine(
+            Guard.IfNullOrEmpty(actions, nameof(actions)),
+            Guard.IfNull(catchAction, nameof(catchAction)))
+            .OnSuccess(() => _logic.FilterActionsForState(this, actions, catchAction))
+            .OnSuccess(x => (_exitActions, _exitCatchAction) = x);
 
         protected override IEnumerable<object> GetEqualityComponents()
         {
@@ -74,46 +71,36 @@ namespace BrightSky.Common.StateMachine
 
         internal sealed class StateCommonLogic
         {
-            public (IEnumerable<Action<State, Command>>, Action<Exception>) GetActions(State state, IEnumerable<Action<State, Command>> actions, Action<Exception> catchAction)
-            {
-                GuardAgainst.Null(state, nameof(state));
-                GuardAgainst.NullOrEmpty(actions, nameof(actions));
-                GuardAgainst.Null(catchAction, nameof(catchAction));
-
-                Invariant.SatisfiedBy(
+            public Result<Tuple<IEnumerable<Action<State, Command>>, Action<Exception>>> FilterActionsForState(State state, IEnumerable<Action<State, Command>> actions, Action<Exception> catchAction) => Result.Combine(
+                Guard.IfNull(state, nameof(state)),
+                Guard.IfNullOrEmpty(actions, nameof(actions)),
+                Guard.IfNull(catchAction, nameof(catchAction)),
+                Guard.IfSatisfiedBy(
                     () => actions.All(x => x.Method.GetParameters().All(y => y.Position == 0 && y.ParameterType == state.GetType())),
-                    $"{nameof(actions)} contains an action with the wrong state type, expected {state.GetType()}.");
+                    $"{nameof(actions)} contains an action with the wrong state type, expected {state.GetType()}."))
+                .Map(() => Tuple.Create(actions, catchAction));
 
-                return (actions, catchAction);
-            }
-
-            public void RunActions(State state, Command command, IEnumerable<Action<State, Command>> actions, Action<Exception> catchAction)
-            {
-                GuardAgainst.Null(state, nameof(state));
-                GuardAgainst.Null(command, nameof(command));
-                GuardAgainst.NullOrEmpty(actions, nameof(actions));
-                GuardAgainst.Null(catchAction, nameof(catchAction));
-
-                Invariant.SatisfiedBy(
+            public Result RunActions(State state, Command command, IEnumerable<Action<State, Command>> actions, Action<Exception> catchAction) => Result.Combine(
+                Guard.IfNull(state, nameof(state)),
+                Guard.IfNull(command, nameof(command)),
+                Guard.IfNullOrEmpty(actions, nameof(actions)),
+                Guard.IfNull(catchAction, nameof(catchAction)),
+                Guard.IfSatisfiedBy(
                     () => actions.All(x => x.Method.GetParameters().All(y => y.Position == 0 && y.ParameterType == state.GetType())),
-                    $"{nameof(actions)} contains an action with the wrong state type, expected {state.GetType()}.");
-
-                Invariant.SatisfiedBy(
+                    $"{nameof(actions)} contains an action with the wrong state type, expected {state.GetType()}."),
+                Guard.IfSatisfiedBy(
                     () => actions.Any(x => x.Method.GetParameters().Any(y => y.Position == 1 && y.ParameterType == command.GetType())),
-                    $"{nameof(actions)} does not contain an action with the command type {command.GetType()}.");
-
-                var commandActions = actions
-                    .Where(x => x.Method.GetParameters().Where(y => y.Position == 1 && y.ParameterType == command.GetType()).Any())
-                    .Select(x => new Action(() => x(state, command)))
-                    .ToArray();
-
-                if (commandActions.Any())
+                    $"{nameof(actions)} does not contain any action with the command type {command.GetType()}."))
+                .Map(
+                    () => actions.Where(x => x.Method.GetParameters().Any(y => y.Position == 1 && y.ParameterType == command.GetType()))
+                                 .Select(x => new Action(() => x(state, command))).ToArray())
+                .OnSuccess(x =>
                 {
-                    Handling.TryCatch(
-                        () => Parallel.Invoke(commandActions),
-                        catchAction);
-                }
-            }
+                    if (x.Any())
+                    {
+                        Handling.TryCatch(() => Parallel.Invoke(x), catchAction);
+                    }
+                });
         }
     }
 }

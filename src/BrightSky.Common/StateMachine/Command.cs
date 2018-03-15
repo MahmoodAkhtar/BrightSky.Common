@@ -11,12 +11,9 @@ namespace BrightSky.Common.StateMachine
             Name = name;
         }
 
-        public static Command Create(string name)
-        {
-            GuardAgainst.NullOrWhitespace(name, nameof(name));
-
-            return new Command(name);
-        }
+        public static Result<Command> Create(string name) => Result.Combine(
+            Guard.IfNullOrWhiteSpace(name, nameof(name)))
+            .Map(() => new Command(name));
 
         protected override IEnumerable<object> GetEqualityComponents()
         {
