@@ -4,20 +4,20 @@ namespace BrightSky.Common
 {
     public static class Handling
     {
-        public static TResult TryCatch<TException, TResult>(Func<TResult> factory, Action<TException> catchAction) where TException : Exception
+        public static TOutput TryCatch<TException, TOutput>(Func<TOutput> factory, Action<TException> catchAction) where TException : Exception
         {
-            TResult result = default(TResult);
+            TOutput output = default(TOutput);
 
             try
             {
-                result = factory();
+                output = factory();
             }
             catch (TException ex)
             {
                 catchAction(ex);
             }
 
-            return result;
+            return output;
         }
 
         public static void TryCatch<TException>(Action action, Action<TException> catchAction) where TException : Exception
