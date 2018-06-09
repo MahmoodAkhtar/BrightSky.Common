@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 
 namespace BrightSky.Common
 {
-    public struct Result : ISerializable
+    public struct Result : ISerializable, IResult
     {
         private static readonly Result OkResult = new Result(false, null);
 
@@ -111,7 +111,7 @@ namespace BrightSky.Common
         }
     }
 
-    public struct Result<T> : ISerializable
+    public struct Result<T> : ISerializable, IResult<T>
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly ResultCommonLogic _logic;
