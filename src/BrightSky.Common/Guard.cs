@@ -31,14 +31,13 @@ namespace BrightSky.Common
             return Result.Ok();
         }
 
-        public static Result IfSatisfiedBy(Func<bool> predicate, string message)
-        {
-            return !predicate() ? Result.Fail(message) : Result.Ok();
-        }
-
-        public static Result IfViolatedBy(Func<bool> predicate, string message)
+        public static Result IfTrue(Func<bool> predicate, string message)
         {
             return predicate() ? Result.Fail(message) : Result.Ok();
+        }
+        public static Result IfFalse(Func<bool> predicate, string message)
+        {
+            return !predicate() ? Result.Fail(message) : Result.Ok();
         }
     }
 }

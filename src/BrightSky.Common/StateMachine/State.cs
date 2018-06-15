@@ -75,7 +75,7 @@ namespace BrightSky.Common.StateMachine
                 Guard.IfNull(state, nameof(state)),
                 Guard.IfNullOrEmpty(actions, nameof(actions)),
                 Guard.IfNull(catchAction, nameof(catchAction)),
-                Guard.IfSatisfiedBy(
+                Guard.IfFalse(
                     () => actions.All(x => x.Method.GetParameters().All(y => y.Position == 0 && y.ParameterType == state.GetType())),
                     $"{nameof(actions)} contains an action with the wrong state type, expected {state.GetType()}."))
                 .Map(() => Tuple.Create(actions, catchAction));
@@ -85,10 +85,10 @@ namespace BrightSky.Common.StateMachine
                 Guard.IfNull(command, nameof(command)),
                 Guard.IfNullOrEmpty(actions, nameof(actions)),
                 Guard.IfNull(catchAction, nameof(catchAction)),
-                Guard.IfSatisfiedBy(
+                Guard.IfFalse(
                     () => actions.All(x => x.Method.GetParameters().All(y => y.Position == 0 && y.ParameterType == state.GetType())),
                     $"{nameof(actions)} contains an action with the wrong state type, expected {state.GetType()}."),
-                Guard.IfSatisfiedBy(
+                Guard.IfFalse(
                     () => actions.Any(x => x.Method.GetParameters().Any(y => y.Position == 1 && y.ParameterType == command.GetType())),
                     $"{nameof(actions)} does not contain any action with the command type {command.GetType()}."))
                 .Map(

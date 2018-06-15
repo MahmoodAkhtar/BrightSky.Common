@@ -18,14 +18,14 @@ namespace BrightSky.Common.StateMachine
         public static Result<Process> Create(IEnumerable<Transition> transitions, State state) => Result.Combine(
             Guard.IfNullOrEmpty(transitions, nameof(transitions)),
             Guard.IfNull(state, nameof(state)),
-            Guard.IfViolatedBy(
+            Guard.IfTrue(
                 () => transitions.Any(x => x.Start != state || x.End != state),
                 $"{nameof(transitions)} has a transition that does not start with or end with state {state.GetType()}."))
             .Map(() => new Process(transitions, state));
 
         public Result<State> MoveNext(Command command) => Result.Combine(
             Guard.IfNull(command, nameof(command)),
-            Guard.IfSatisfiedBy(
+            Guard.IfFalse(
                 () => _transitions.Any(x => x.Start == CurrentState && x.Command == command),
                 $"Current state {CurrentState.GetType()} does not accept the command {command.GetType()}."))
             .OnSuccess(() => CurrentState.RunExitActions(command))
