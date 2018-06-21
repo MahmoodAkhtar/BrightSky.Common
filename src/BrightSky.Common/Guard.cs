@@ -31,8 +31,8 @@ namespace BrightSky.Common
             return Result.Ok();
         }
 
-        [Obsolete("IfVoilatedBy is deprecated, please use IfTrue instead.")]
-        public static Result IfVoilatedBy(Func<bool> predicate, string message)
+        [Obsolete("IfViolatedBy is deprecated, please use IfTrue instead.")]
+        public static Result IfViolatedBy(Func<bool> predicate, string message)
         {
             return predicate() ? Result.Fail(message) : Result.Ok();
         }
