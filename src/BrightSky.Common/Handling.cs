@@ -32,5 +32,18 @@ namespace BrightSky.Common
             }
         }
 
+        public static bool TryCatch<TException>(Action action, Func<TException, bool> catchAction) where TException : Exception
+        {
+            try
+            {
+                action();
+                return true;
+            }
+            catch (TException ex)
+            {
+                return catchAction(ex);
+            }
+        }
+
     }
 }
