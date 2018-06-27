@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace BrightSky.Common
 {
@@ -47,6 +46,7 @@ namespace BrightSky.Common
         {
             return predicate() ? Result.Fail(message) : Result.Ok();
         }
+
         public static Result IfFalse(Func<bool> predicate, string message)
         {
             return !predicate() ? Result.Fail(message) : Result.Ok();

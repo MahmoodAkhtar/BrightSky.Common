@@ -44,6 +44,5 @@ namespace BrightSky.Common
                 return catchAction(ex);
             }
         }
-
     }
 }

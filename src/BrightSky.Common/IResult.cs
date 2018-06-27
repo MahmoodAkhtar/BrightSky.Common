@@ -9,6 +9,5 @@
 
     public interface IResult<T> : IResult
     {
-
     }
 }

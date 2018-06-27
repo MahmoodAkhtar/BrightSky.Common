@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using BrightSky.Common.Extensions;
+using System.Collections.Generic;
 
 namespace BrightSky.Common.StateMachine
 {

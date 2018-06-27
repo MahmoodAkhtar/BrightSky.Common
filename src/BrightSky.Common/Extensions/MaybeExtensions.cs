@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BrightSky.Common
+namespace BrightSky.Common.Extensions
 {
     public static class MaybeExtensions
     {

@@ -1,4 +1,5 @@
 ﻿using System;
+using BrightSky.Common.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BrightSky.Common.Tests

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace BrightSky.Common
+namespace BrightSky.Common.Extensions
 {
     /// <summary>
     /// Extentions for async operations where the task appears in the both operands

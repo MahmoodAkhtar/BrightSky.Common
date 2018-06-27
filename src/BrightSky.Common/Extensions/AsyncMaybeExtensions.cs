@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace BrightSky.Common
+namespace BrightSky.Common.Extensions
 {
     public static class AsyncMaybeExtensions
     {
