@@ -97,6 +97,11 @@ namespace BrightSky.Common
             return Name;
         }
 
+        public static implicit operator string(EnumObject<T> obj)
+        {
+            return obj.ToString();
+        }
+
         protected IEnumerable<object> GetEqualityComponents()
         {
             yield return GetType();

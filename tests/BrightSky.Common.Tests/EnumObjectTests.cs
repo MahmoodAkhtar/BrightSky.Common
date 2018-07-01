@@ -170,5 +170,18 @@ namespace BrightSky.Common.Tests
             Assert.AreEqual(SutEnumObject.Mercedes, sut.Value);
         }
 
+        [TestMethod]
+        public void Public_static_implicit_operator_string_EnumObject()
+        {
+            // Arrange
+            var sut = SutEnumObject.Mercedes;
+
+            // Act
+            string actual = sut;
+
+            // Assert
+            Assert.AreEqual("Mercedes", actual);
+        }
+
     }
 }
