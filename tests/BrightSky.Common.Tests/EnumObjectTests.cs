@@ -149,7 +149,7 @@ namespace BrightSky.Common.Tests
         }
 
         [TestMethod]
-        public void Public_static_EnumObject_FromValue_passed_valid_value_BMW()
+        public void Public_static_EnumObject_FromValue_passed_valid_value_Bmw()
         {
             // Arrange + Act
             var sut = SutEnumObject.FromValue(2);
