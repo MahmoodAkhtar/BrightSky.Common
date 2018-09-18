@@ -9,7 +9,7 @@ namespace BrightSky.Common.Extensions
             return function(extendee);
         }
 
-        public static IResult<TOutput> Pipe<TInput, TOutput>(this IResult<TInput> extendee, Func<IResult<TInput>, IResult<TOutput>> function)
+        public static Result<TOutput> Pipe<TInput, TOutput>(this Result<TInput> extendee, Func<Result<TInput>, Result<TOutput>> function)
         {
             if (extendee.IsFailure) return Result.Fail<TOutput>(extendee.Error);
             return function(extendee);
