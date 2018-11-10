@@ -5,14 +5,15 @@
     <Authors>Mahmood Akhtar</Authors>
     <Company>BrightSkyIT Ltd</Company>
     <PackageTags>BrightSky Common</PackageTags>
-    <AssemblyVersion>1.0.18261.2110</AssemblyVersion>
-    <FileVersion>1.0.18261.2110</FileVersion>
-    <Version>1.0.0-alpha-59</Version>
+    <AssemblyVersion>1.0.18314.1940</AssemblyVersion>
+    <FileVersion>1.0.18314.1940</FileVersion>
+    <Version>1.0.0-alpha-63</Version>
     <RepositoryUrl>https://github.com/MahmoodAkhtar/BrightSky.Common</RepositoryUrl>
     <RepositoryType>Github</RepositoryType>
     <PackageProjectUrl>https://github.com/MahmoodAkhtar/BrightSky.Common</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/MahmoodAkhtar/BrightSky.Common/LICENSE.md</PackageLicenseUrl>
     <Copyright>Copyright (c) 2018-present Mahmood Akhtar</Copyright>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
